@@ -1,4 +1,3 @@
-
 class ETLInput:
 
     def __init__(self, data):

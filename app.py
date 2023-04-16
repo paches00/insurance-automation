@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Creates the Streamlit app header with information about the product and sets up the user interface
 def header():
     st.markdown('<h1>Insurance Automation</h1>', unsafe_allow_html=True)
     st.write("This is a demo of a chatbot using the GPT-3 model that can answer questions and provide insights about given crash report documents.")
@@ -20,6 +21,7 @@ def header():
 
     return uploaded_file
     
+# Creates the Streamlit app template
 def page_setup():
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["Intro", "Report Summary", "Report Generated Image", "Crash Site", "Data Extraction"])
 
@@ -61,22 +63,29 @@ def page_setup():
 
     return [tab2, tab3, tab4, tab5]
 
+# Runs the app with the given file and begins the data extraction and GPT-3 model
 def run(file, tab2, tab3, tab4, tab5):
+    # Checks if file has been uploaded
     if file:
+        # Runs the model and displays the results in the various tabs
         with st.spinner("Running the model..."):
             save_uploadedfile(file)
             model_gpt = GPT3(os.path.join("images/input_image.jpg"))
+            # Begins the entire pipeline
             model_gpt.generate_report()
 
+        # Tab 2: Report Summary
         with tab2:
             if not model_gpt.full_report == "":
                 st.write(model_gpt.full_report)
 
+        # Tab 3: Report Generated Image
         with tab3:
             model_gpt.generate_image()
             st.write("This might be what the crash site could've looked like")
             st.markdown(f"<img src='{model_gpt.image_url}' alt='No Image Found' style='justify-content: center'/>", unsafe_allow_html=True)
 
+        # Tab 4: Crash Site using Google Maps API
         with tab4:
             st.write("This is an approximate location of the crash site")
             location = get_location(model_gpt.data)
@@ -87,6 +96,7 @@ def run(file, tab2, tab3, tab4, tab5):
             else:
                 st.map(location)
 
+        # Tab 5: Displaying extracted data
         with tab5:
             st.markdown("#### Segmentation & Handwriting Recognition")
             st.image("images/result.jpg")
@@ -95,10 +105,12 @@ def run(file, tab2, tab3, tab4, tab5):
             st.markdown("#### Data Output")
             st.write(model_gpt.data)
 
+# Helper function to save the uploaded file
 def save_uploadedfile(uploadedfile):
     with open(os.path.join("images", "input_image.jpg"), "wb") as f:
         f.write(uploadedfile.getbuffer())
 
+# Helper function to search longitude and latitude of a location
 def search_lat_lng(data):
     lat_lng_list = []
     for location in data:
@@ -106,6 +118,7 @@ def search_lat_lng(data):
         lat_lng_list.append((lat_lng['lat'], lat_lng['lng']))
     return lat_lng_list
 
+# Helper function to get the location of the crash site using Google Maps API
 def get_location(data, gmaps_key=os.environ.get("GOOGLE_MAPS_API_KEY")):
     try:
         df = data
@@ -129,6 +142,7 @@ def get_location(data, gmaps_key=os.environ.get("GOOGLE_MAPS_API_KEY")):
     except:
         pass
 
+# Runs entire Streamlit app
 if __name__ == "__main__":
     file = header()
     tabs = page_setup()

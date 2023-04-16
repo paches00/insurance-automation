@@ -1,4 +1,4 @@
-def elt_format_input(data):
+def etl_format_input(data):
     # Transform the data to the correct format
     data["input"] = "input"
     data = data.dropna()

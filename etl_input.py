@@ -108,9 +108,6 @@ def etl_input_checkbox(data):
     data["A indicar el numero de casillas marcadas"] = data[[f'A {checkboc_columns[i]}' for i in range(17)]].sum(axis=1)
     data["B indicar el numero de casillas marcadas"] = data[[f'B {checkboc_columns[i]}' for i in range(17)]].sum(axis=1)
 
-    # Give me a json format of the data
-    data = data.to_json(orient='split')
-
     return data
 
 def etl_original_data_format(hand_written, check):
@@ -131,4 +128,4 @@ def etl_main(hand_written, checkbox):
     checkbox = etl_format_input(checkbox)
     input_file = etl_merge(hand_written, checkbox)
 
-    return input_file
+    return input_file.to_json(orient='records')

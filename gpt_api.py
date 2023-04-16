@@ -9,7 +9,7 @@ from checkbox_detection import checkbox_detection as Checkboxes
 load_dotenv()
 
 class GPT3:
-
+    # Initialize the class with various variables
     def __init__(self, image, key=os.environ.get("OPENAI_API_KEY")):
         self.__api_key = key
         self.image_path = image
@@ -21,6 +21,7 @@ class GPT3:
         self.summary = ""
         self.data = ""
     
+    # Takes a prompt and generates a response by calling the OpenAI API
     def generate_response(self, prompt):
         openai.api_key = self.__api_key
         completion=openai.ChatCompletion.create(
@@ -37,6 +38,7 @@ class GPT3:
 
         return selection
 
+    # Runs the various data extraction models and generates the report
     def generate_report(self):
         # Read the data
         with open(self.example, "r") as f:
@@ -66,6 +68,7 @@ class GPT3:
         self.report = self.full_report.split('Summary')[0]
         self.summary = self.full_report.split('Summary')[1]
     
+    # Generates an image representation of the accident
     def generate_image(self):
         # Image generation
         self.cont_img = "Pretend your are an designer to create an image representation of an accident you just saw 100 meters away. Your objective is to make a simple but detailed description of the image being direct and clear. Your return will be given to DAll-E to generate an image. By no circumstance make up any information."

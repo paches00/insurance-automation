@@ -1,0 +1,43 @@
+Accident Report:
+
+An accident occurred on July 2nd, 2012 at 17:38 in San Vicente de la Sonsierra, Spain involving two vehicles. The vehicles involved were a Mitsubishi Compact with license plate number 8386MGP, insured by Balumba, and a Toyota F355 with license plate number 8933MNM, insured by Caser. The drivers involved in the accident were Victoria Contreras, driving the Mitsubishi, and Carmen Aguilera, driving the Toyota.
+
+Driver A (Victoria Contreras): 
+- Name: Victoria Contreras
+- Address: C/ Conde 66
+- Postal code: N/A
+- Telephone: 6113336419
+- Email: N/A
+- Nationality: Italian
+- Date of birth: August 27th, 1961
+- License number: 16572018F
+- Valid until: February 6th, 2019
+- Vehicle: Mitsubishi Compact with license plate number 8386MGP
+- Insurance: Balumba
+- Damages incurred: Guantera Quemado
+
+Driver B (Carmen Aguilera):
+- Name: Carmen Aguilera
+- Address: C/ Guerra 85
+- Postal code: N/A
+- Telephone: N/A
+- Email: Beltran.gonzalo@gmail.es
+- Nationality: Spanish
+- Date of birth: September 15th, 1997
+- License number: 20437005O
+- Valid until: February 2nd, 2027
+- Vehicle: Toyota F355 with license plate number 8933MNM
+- Insurance: Caser
+- Damages incurred: Sistema Antobloqueo de Ruedas Desconchado
+
+Direct Conclusion: 
+The accident involved only two vehicles and resulted in damages to both. Driver A was driving a Mitsubishi Compact and incurred damages to the guantera while Driver B was driving a Toyota F355 and incurred damages to the sistema antibloqueo de ruedas. Both drivers have valid driver's licenses and insurance plans.
+
+Detailed Summary:
+On the day of the accident, July 2nd, 2012, at 17:38, two vehicles collided in San Vicente de la Sonsierra, Spain. Driver A, Victoria Contreras, was driving a Mitsubishi Compact with license plate number 8386MGP. According to the accident report, Driver A was in the process of parking their vehicle when the collision occurred. Driver A had a valid driver's license with license number 16572018F, issued in Italy, which was valid until February 6th, 2019. The Mitsubishi was insured by Balumba and had damages incurred to the guantera.
+
+Driver B, Carmen Aguilera, was driving a Toyota F355 with license plate number 8933MNM. The accident report states that Driver B was in the process of leaving a private parking lot when the collision occurred. Driver B also had a valid driver's license with license number 20437005O, issued in Spain, which is valid until February 2nd, 2027. The Toyota was insured by Caser and incurred damages to the sistema antibloqueo de ruedas.
+
+The accident report indicates that there were no victims involved in the accident. Additionally, it reveals that there were witnesses present at the time of the accident, one of whom was Veronica Dominguez, with a telephone number of 6592871886. The report also notes that both drivers were in compliance with driving regulations at the time of the accident, had no prior driving offenses or accidents, and that both vehicles had the necessary insurance coverage.
+
+In conclusion, the accident inquired involved only two vehicles, causing damages but no casualties. The drivers involved were compliant with driving regulations, had no prior accidents or offenses, and had valid driver's licenses and insurance.

@@ -6,8 +6,8 @@ import pandas as pd
 import random
 
 class GPT3:
-    def __init__(self, data, key):
-        self.api_key = "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"
+    def __init__(self, data, key=os.environ.get("OPENAI_API_KEY")):
+        self.api_key = key
         self.data_path = data
         self.example = "example_out.txt"
         self.cont = ""

@@ -67,6 +67,15 @@ def etl_input_checkbox(data):
 
     return data
 
+def etl_orginal_data_format(hand_written, check):
+    hand_written = hand_written.rename(columns={'classes': 'campo'})
+    hand_written = hand_written.rename(columns={'texto': 'text'})
+    
+    # append checkbox data
+    final = hand_written.append(check)
+    final = final.drop(columns=['Unnamed: 0'])
+    return final
+
 def etl_main(hand_written, checkbox):
 
     hand_written = hand_written.rename(columns={'classes': 'campo'})

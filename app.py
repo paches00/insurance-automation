@@ -119,6 +119,8 @@ def get_location(data, gmaps_key=os.environ.get("GOOGLE_MAPS_API_KEY")):
             return loc_data2
         except:
             return loc_data1
+    else:
+        return None
 
 
 if __name__ == "__main__":

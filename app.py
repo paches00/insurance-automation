@@ -55,11 +55,9 @@ def page_setup():
 
     with tab4:
         st.markdown("## Crash Site")
-        st.write("This is an approximate location of the crash site")
 
     with tab5:
-        st.markdown("## Data Extraction")
-        # st.markdown("#### Check Boxes")        
+        st.markdown("## Data Extraction")        
 
     return [tab2, tab3, tab4, tab5]
 
@@ -76,9 +74,11 @@ def run(file, tab2, tab3, tab4, tab5):
 
         with tab3:
             model_gpt.generate_image()
+            st.write("This might be what the crash site could've looked like")
             st.markdown(f"<img src='{model_gpt.image_url}' alt='No Image Found' style='justify-content: center'/>", unsafe_allow_html=True)
 
         with tab4:
+            st.write("This is an approximate location of the crash site")
             location = get_location(model_gpt.data)
 
             if type(location) == str:
@@ -90,6 +90,10 @@ def run(file, tab2, tab3, tab4, tab5):
         with tab5:
             st.markdown("#### Segmentation & Handwriting Recognition")
             st.image("images/result.jpg")
+            st.markdown("#### Check Boxes")
+            st.image("images/checkbox_detected.jpg")
+            st.markdown("#### Data Output")
+            st.write(model_gpt.data)
 
 def save_uploadedfile(uploadedfile):
     with open(os.path.join("images", "input_image.jpg"), "wb") as f:

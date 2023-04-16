@@ -1,6 +1,6 @@
 import openai
 import os 
-from etl_input import etl_format_input, etl_input_checkbox
+from etl_input import etl_input_checkbox, etl_main
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -8,9 +8,10 @@ load_dotenv()
 
 class GPT3:
 
-    def __init__(self, data, key=os.environ.get("OPENAI_API_KEY")):
+    def __init__(self, image, key=os.environ.get("OPENAI_API_KEY")):
         self.__api_key = key
-        self.data_path = data
+        self.image_path = image
+        self.data_path = "./data_trials/data.csv"
         self.example = "example_out.txt"
         self.cont = ""
         self.report = ""
@@ -38,11 +39,16 @@ class GPT3:
         # Read the data
         with open(self.example, "r") as f:
             example_out = f.read()
-        input_file = pd.read_csv(self.data_path)
+
+        # # Running the model
+        # seq = pd.read_csv(Seq2Seq(self.image_path))
+        # check = pd.read_csv(Checkboxes(self.image_path))
+
+        seq, check = ""
 
         # ETL
-        data_pre = etl_format_input(input_file)
-        input = etl_input_checkbox(data_pre)
+        data = etl_main(seq, check)
+        input = etl_input_checkbox()
 
         # Report and summary
         self.cont = "Pretend you are an accident report analsyst in charge of performing a review on accident reports. Your objective is to make a full professional report, structured in accident summary, bullet points of each driver, being direct and conlusion and a 300 words detail summary, by no circumstance make up any information. The data you will be provided is in spanish, the variables describe both of the persons involded in the accident as well as information about it. You will deliver a full report in english  as well as a summary. "

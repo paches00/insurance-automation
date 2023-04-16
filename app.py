@@ -69,7 +69,7 @@ def page_setup():
 def run(file, tab2, tab3, tab4, tab5):
     if file:
         with st.spinner("Running the model..."):
-            model_gpt = GPT3("./data_trials/parte_amistoso_test.csv")
+            model_gpt = GPT3("image.jpg")
             model_gpt.generate_report()
 
         with tab2:

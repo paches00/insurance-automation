@@ -8,9 +8,11 @@ def etl_format_input(data):
     return data
 
 def etl_merge(hand, checkbox):
+    # Return a single dataset from both models, Handwritten and checkboxes. 
     return hand.merge(checkbox, left_index=True, right_index=True)
 
 def etl_input_checkbox(data):
+    # Reformatting of column names 
     new_names  = ["Victima(s) incluso leve(s) — No",
                     "Victima(s) incluso leve(s) — Si",
                     "Daños materiales: Vehículos distintos de A y B — No",
@@ -58,27 +60,29 @@ def etl_input_checkbox(data):
                     ]
     data.columns = new_names
    
-    # Si la columna 'victimas si' tiene x o X en la celda, se cambia por 1
+    # Combining the columns 'Si' and 'No' into one boolean column
+    
+    # Vehiculo A — ¿Los daños propios del vehículo están asegurados?
     data['Vehiculo A — ¿Los daños propios del vehículo están asegurados?'] = data['Vehiculo A — ¿Los daños propios del vehículo están asegurados? — Si'].apply(lambda x: True if x == 'x' or x == 'X' else False)
     data = data.drop(columns=['Vehiculo A — ¿Los daños propios del vehículo están asegurados? — Si', 'Vehiculo A — ¿Los daños propios del vehículo están asegurados? — No'])
 
-    # B aseguradora danos_propios si	B aseguradora danos_propios no
+    # Vehiculo B — ¿Los daños propios del vehículo están asegurados?
     data['Vehiculo B — ¿Los daños propios del vehículo están asegurados?'] = data['Vehiculo B — ¿Los daños propios del vehículo están asegurados? — Si'].apply(lambda x: True if x == 'x' or x == 'X' else False)
     data = data.drop(columns=['Vehiculo B — ¿Los daños propios del vehículo están asegurados? — Si', 'Vehiculo B — ¿Los daños propios del vehículo están asegurados? — No'])
 
-    # danos_materiales objetos no	danos_materiales objetos si	
+    # Daños materiales: Vehículos distintos de A y B
     data['Daños materiales: Vehículos distintos de A y B'] = data['Daños materiales: Vehículos distintos de A y B — Si'].apply(lambda x: True if x == 'x' or x == 'X' else False)
     data = data.drop(columns=['Daños materiales: Vehículos distintos de A y B — Si', 'Daños materiales: Vehículos distintos de A y B — No'])
 
-    # danos_materiales vehiculos si	danos_materiales vehículos no
+    # Daños materiales: objetos distintos al vehículo
     data['Daños materiales: objetos distintos al vehículo'] = data['Daños materiales: objetos distintos al vehículo — Si'].apply(lambda x: True if x == 'x' or x == 'X' else False)
     data = data.drop(columns=['Daños materiales: objetos distintos al vehículo — Si', 'Daños materiales: objetos distintos al vehículo — No'])
 
-    # victimas no	victimas si
+    # Victima(s) incluso leve(s)
     data['Victima(s) incluso leve(s)'] = data['Victima(s) incluso leve(s) — Si'].apply(lambda x: True if x == 'x' or x == 'X' else False)
     data = data.drop(columns=['Victima(s) incluso leve(s) — Si', 'Victima(s) incluso leve(s) — No'])
 
-    # A 1	A 10	A 11	A 12	A 13	A 14	A 15	A 16	A 17	A 2	A 3	A 4	A 5	A 6	A 7	A 8	A 9
+    # Middle column checkboxes
     checkboc_columns = ["Estaba estacionado/parado",
                         "Salía de un estacionamiento abriendo puerta",
                         "Iba a estacionar",
@@ -97,7 +101,7 @@ def etl_input_checkbox(data):
                         "Venía de la derecha (en un cruce)",        
                         "No respeto la señal de preferencia o sematoro en rojo"]
 
-
+    # Transform of 'x' and 'X' to True or False (after this step, no inconsistencies)
     for i in range(17):
         data[f'A {checkboc_columns[i]}'] = data[f'A {checkboc_columns[i]}'].apply(lambda x: True if x == 'x' or x == 'X' else False)
         data[f'B {checkboc_columns[i]}'] = data[f'B {checkboc_columns[i]}'].apply(lambda x: True if x == 'x' or x == 'X' else False)
@@ -111,6 +115,8 @@ def etl_input_checkbox(data):
     return data
 
 def etl_original_data_format(hand_written, check):
+    
+    # Reformatting of data
     hand_written = hand_written.rename(columns={'classes': 'campo'})
     hand_written = hand_written.rename(columns={'texto': 'text'})
     
@@ -119,8 +125,9 @@ def etl_original_data_format(hand_written, check):
     # final = final.drop(columns=['Unnamed: 0'])
     return final
 
+# General function to format the input data and return a json
 def etl_main(hand_written, checkbox):
-
+    
     hand_written = hand_written.rename(columns={'classes': 'campo'})
     hand_written = hand_written.rename(columns={'texto': 'text'})
     hand_written = etl_format_input(hand_written)

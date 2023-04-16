@@ -1,0 +1,45 @@
+campo,x,y,w,h,text
+Victima(s) incluso leve(s) — No,755,111,10,10,X
+Victima(s) incluso leve(s) — Si,853,111,10,10,
+Daños materiales: Vehículos distintos de A y B — No,93,188,11,10,X
+Daños materiales: Vehículos distintos de A y B — Si,191,188,10,10,X
+Daños materiales:objetos distintos al vehículo — No,282,188,10,11,X
+Daños materiales: objetos distintos al vehículo — Si,380,188,10,11,X
+A Estaba estacionado/parado,449,327,17,16,X
+B Estaba estacionado/parado,733,327,16,16,X
+A Salía de un estacionamiento abriendo puerta,449,349,17,17,X
+B Salía de un estacionamiento abriendo puerta,733,349,16,17,X
+A Iba a estacionar,449,392,17,16,X
+B Iba a estacionar,733,392,16,16,X
+"A Salia de un aparcamiento, de un Vehículo lugar privado, de un camino de tierra",449,424,17,17,X
+"B Salia de un aparcamiento, de un Vehículo lugar privado, de un camino de tierra",733,424,16,17,X
+"A Entrada a un aparcamiento, a un lugar privado, a un camino de tierra",449,472,17,16,X
+"B Entrada a un aparcamiento, a un lugar privado, a un camino de tierra",733,472,16,16,
+A Entrada a una plaza de sentido giratorio,449,518,17,16,
+B Entrada a una plaza de sentido giratorio,733,518,16,16,
+A Circulaba por una plaza de sentido giratono,449,567,17,16,X
+B Circulaba por una plaza de sentido giratono,733,566,16,17,X
+A Colisiono en la parte de atrás al otro vehiculo que circulaba en el mismo sentido y en el mismo carril,449,616,17,16,
+B Colisiono en la parte de atrás al otro vehiculo que circulaba en el mismo sentido y en el mismo carril,733,616,16,16,
+A Circulaba en el mismo sentido y en carril diferente,449,679,17,17,X
+B Circulaba en el mismo sentido y en carril diferente,733,679,16,17,
+A Cambiaba de carril,449,728,17,16,X
+B Cambiaba de carril,733,728,16,16,
+A Adelantaba,449,759,17,16,X
+B Adelantaba,733,759,16,16,
+A Giraba a la derecha,449,791,17,16,
+B Giraba a la derecha,733,790,16,17,X
+A Giraba a la izquierda,449,823,17,16,X
+B Giraba a la izquierda,733,823,16,16,
+A Daba marcha atrás,449,853,17,17,X
+B Daba marcha atrás,733,853,16,17,X
+A Invadía la parte reservada a la circulación en sentido inverso,449,886,17,16,
+B Invadía la parte reservada a la circulación en sentido inverso,733,886,16,17,X
+Vehiculo A — ¿Los daños propios del vehículo están asegurados? — No,160,897,10,10,X
+Vehiculo A — ¿Los daños propios del vehículo están asegurados? — Si,257,897,11,10,X
+Vehiculo B — ¿Los daños propios del vehículo están asegurados? — No,880,897,11,11,X
+Vehiculo B — ¿Los daños propios del vehículo están asegurados? — Si,978,897,10,10,
+A Venía de la derecha (en un cruce),449,935,17,16,
+B Venía de la derecha (en un cruce),733,935,16,16,X
+A No respeto la señal de preferencia o sematoro en rojo,449,982,17,16,
+B No respeto la señal de preferencia o sematoro en rojo,733,982,16,16,X

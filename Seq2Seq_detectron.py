@@ -20,7 +20,7 @@ from transformers import TrOCRProcessor
 from transformers import VisionEncoderDecoderModel
 
 
-class trOCR_Detectron_api:
+class Seq2Seq_Detectron_api:
 
     def __init__(self, input):
         self.input = input
@@ -49,10 +49,10 @@ class trOCR_Detectron_api:
     
     # Function to register dataset in coco format for Detectron Model
     def register_dataset(name, dirname):
-        df = trOCR_Detectron_api.load_list_from_file('bounding-box.txt')
+        df = Seq2Seq_Detectron_api.load_list_from_file('bounding-box.txt')
         new_classese = pd.read_csv('new_classes.csv')
         if name not in DatasetCatalog.list():
-            DatasetCatalog.register(name, lambda: trOCR_Detectron_api.split_data(df, 'train'))
+            DatasetCatalog.register(name, lambda: Seq2Seq_Detectron_api.split_data(df, 'train'))
             
         MetadataCatalog.get(name).set(
             thing_classes=list(new_classese['classes']), split='train', dirname= dirname
@@ -70,11 +70,11 @@ class trOCR_Detectron_api:
 
     # Function that predicts bounding boxes using detectron and saves crops in /bounding_box_images
     def predict_detectron(self):
-        df = trOCR_Detectron_api.load_list_from_file('bounding-box.txt')
+        df = Seq2Seq_Detectron_api.load_list_from_file('bounding-box.txt')
         new_classese = pd.read_csv('new_classes.csv')
         parser = default_argument_parser()
         args = parser.parse_args("--config-file tuned-detectron/config.yaml MODEL.WEIGHTS tuned-detectron/model_final.pth".split())
-        cfg = trOCR_Detectron_api.setup_detectron(args)
+        cfg = Seq2Seq_Detectron_api.setup_detectron(args)
         predictor = DefaultPredictor(cfg)
 
         # Create a directory to save the bounding box images
@@ -86,7 +86,7 @@ class trOCR_Detectron_api:
                 os.remove(os.path.join('bounding_box_images', file))
 
         files = []
-        for dict in trOCR_Detectron_api.split_data(df, 'test'):
+        for dict in Seq2Seq_Detectron_api.split_data(df, 'test'):
             files.append(dict['file_name'])
 
         # Set sample size as wanted
@@ -134,10 +134,10 @@ class trOCR_Detectron_api:
         boxes['classes'] = classes['classes'] 
 
         for file in os.listdir('bounding_box_images'):
-            image, pixel_values = trOCR_Detectron_api.retrieve_sample(file)
+            image, pixel_values = Seq2Seq_Detectron_api.retrieve_sample(file)
             generated_ids = self.model.generate(pixel_values)
             generated_text = self.processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
-            trOCR_Detectron_api.add_value_to_specific(boxes, 'classes', file.split('.jpg')[0], 'texto', generated_text)
+            Seq2Seq_Detectron_api.add_value_to_specific(boxes, 'classes', file.split('.jpg')[0], 'texto', generated_text)
             plt.imshow(image)
             plt.axis("off")
             plt.show()

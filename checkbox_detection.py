@@ -3,14 +3,15 @@ import cv2
 import csv
 import numpy as np
 
+
 # Read image into array
-#image_array = cv2.imread("c.jpg")
+# image_array = cv2.imread("c.jpg")
 
 def checkbox_detection(image_array):
-    image = cv2.imread(image_array)
-   
+    image_array = cv2.imread(image_array)
+
     # Convert image to grayscale
-    gray_scale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray_scale_image = cv2.cvtColor(image_array, cv2.COLOR_BGR2GRAY)
 
     # Image thresholding
     _, img_bin = cv2.threshold(gray_scale_image, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
@@ -36,8 +37,8 @@ def checkbox_detection(image_array):
     # Combine the images
     img_bin_final = img_bin_horizontal | img_bin_v
 
-    #cv2.imshow("Greyscale Detection", img_bin_final)
-    #cv2.waitKey(0)
+    # cv2.imshow("Greyscale Detection", img_bin_final)
+    # cv2.waitKey(0)
     _, labels, stats, _ = cv2.connectedComponentsWithStats(~img_bin_final, connectivity=8, ltype=cv2.CV_32S)
     dilation_kernel = np.ones((2, 2), np.uint8)
 
@@ -105,20 +106,26 @@ def checkbox_detection(image_array):
             # Set a threshold for black pixels ratio to determine if the checkbox is ticked
             if black_pixels_ratio > 0.94:
                 ticked = ""
-                print(f"Checkbox at ({x}, {y}) is not ticked")
-                cv2.rectangle(image_array, (x, y), (x + w, y + h), (0, 255, 0), 2)  # Draw a green rectangle
+                # print(f"Checkbox at ({x}, {y}) is not ticked")
+                cv2.rectangle(image_array, (x, y), (x + w, y + h), (0, 0, 255), 2)  # Draw a green rectangle
             else:
                 ticked = "X"
-                print(f"Checkbox at ({x}, {y}) is ticked")
-                #cv2.rectangle(image_array, (x, y), (x + w, y + h), (0, 0, 255), 2)  # Draw a red rectangle
+                # print(f"Checkbox at ({x}, {y}) is ticked")
+                cv2.rectangle(image_array, (x, y), (x + w, y + h), (0, 255, 0), 2)  # Draw a red rectangle
             # Create a list of lists to represent the rows of the CSV file
             try:
-                print([names[counter], x, y, w, h, ticked])
+                # print([names[counter], x, y, w, h, ticked])
                 data.append([names[counter], x, y, w, h, ticked])
             except IndexError:
                 pass
 
-            counter+=1
+            counter += 1
+
+    # Show the resulting image
+    #cv2.imshow("Checkbox Detection", image_array)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
+    cv2.imwrite('images/checkbox_detected.jpg', image_array)
 
     with open("checkbox_detected.csv", 'w', newline='') as file:
         writer = csv.writer(file)
@@ -129,23 +136,3 @@ def checkbox_detection(image_array):
             writer.writerow(row)
 
         return file
-
-    # Show the resulting image
-    #cv2.imshow("Checkbox Detection", image_array)
-    #cv2.waitKey(0)
-    #cv2.destroyAllWindows()
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-

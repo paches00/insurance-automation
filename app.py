@@ -59,21 +59,19 @@ def page_setup():
 
     with tab5:
         st.markdown("## Data Extraction")
-        st.markdown("#### Segmentation")
-        st.markdown("#### Check Boxes")
-        st.markdown("#### Handwritten Text")
-        st.markdown("#### Data Aggregation")
+        # st.markdown("#### Check Boxes")        
 
     return [tab2, tab3, tab4, tab5]
 
 def run(file, tab2, tab3, tab4, tab5):
     if file:
         with st.spinner("Running the model..."):
-            model_gpt = GPT3("image.jpg")
+            save_uploadedfile(file)
+            model_gpt = GPT3(os.path.join("images/input_image.jpg"))
             model_gpt.generate_report()
 
         with tab2:
-            if not model_gpt.report == "" or not model_gpt.summary == "":
+            if not model_gpt.full_report == "":
                 st.write(model_gpt.full_report)
 
         with tab3:
@@ -81,7 +79,7 @@ def run(file, tab2, tab3, tab4, tab5):
             st.markdown(f"<img src='{model_gpt.image_url}' alt='No Image Found' style='justify-content: center'/>", unsafe_allow_html=True)
 
         with tab4:
-            location = get_location(model_gpt.data_path)
+            location = get_location(model_gpt.data)
 
             if type(location) == str:
                 st.write("No location found for '" + location.upper() + "'")
@@ -90,7 +88,12 @@ def run(file, tab2, tab3, tab4, tab5):
                 st.map(location)
 
         with tab5:
-            pass
+            st.markdown("#### Segmentation & Handwriting Recognition")
+            st.image("images/result.jpg")
+
+def save_uploadedfile(uploadedfile):
+    with open(os.path.join("images", "input_image.jpg"), "wb") as f:
+        f.write(uploadedfile.getbuffer())
 
 def search_lat_lng(data):
     lat_lng_list = []
@@ -100,24 +103,27 @@ def search_lat_lng(data):
     return lat_lng_list
 
 def get_location(data, gmaps_key=os.environ.get("GOOGLE_MAPS_API_KEY")):
-    df = pd.read_csv(data)
-    df_lugar = df[df['campo'] == 'lugar']
-    df_localizacion = df[df['campo'] == 'localizacion pais']
-    df = pd.concat([df_lugar, df_localizacion])
-    address = df["text"].values[0] + ", " + df["text"].values[1]
-
-    gmaps = googlemaps.Client(key=gmaps_key)
-
-    location = gmaps.geocode(address)
-    loc_data = search_lat_lng(location)
-    
-    loc_data1 = pd.DataFrame({"latitude": [loc_data[0][0]], "longitude":[loc_data[0][1]]})
-    loc_data2 = pd.DataFrame({"latitude": [loc_data[1][0]], "longitude":[loc_data[1][1]]})
-    
     try:
-        return loc_data2
+        df = data
+        df_lugar = df[df['campo'] == 'lugar']
+        df_localizacion = df[df['campo'] == 'localizacion pais']
+        df = pd.concat([df_lugar, df_localizacion])
+        address = df["text"].values[0] + ", " + df["text"].values[1]
+
+        gmaps = googlemaps.Client(key=gmaps_key)
+
+        location = gmaps.geocode(address)
+        loc_data = search_lat_lng(location)
+        
+        loc_data1 = pd.DataFrame({"latitude": [loc_data[0][0]], "longitude":[loc_data[0][1]]})
+        loc_data2 = pd.DataFrame({"latitude": [loc_data[1][0]], "longitude":[loc_data[1][1]]})
+        
+        try:
+            return loc_data2
+        except:
+            return loc_data1
     except:
-        return loc_data1
+        pass
 
 if __name__ == "__main__":
     file = header()

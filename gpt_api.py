@@ -1,8 +1,9 @@
 import openai
 import os 
-from etl_input import etl_input_checkbox, etl_main
+from etl_input import etl_main, etl_original_data_format
 import pandas as pd
 from dotenv import load_dotenv
+from Seq2Seq_detectron import Seq2Seq_Detectron as Seq2Seq
 
 load_dotenv()
 
@@ -11,13 +12,13 @@ class GPT3:
     def __init__(self, image, key=os.environ.get("OPENAI_API_KEY")):
         self.__api_key = key
         self.image_path = image
-        self.data_path = "./data_trials/data.csv"
-        self.example = "example_out.txt"
+        self.example = "data/example_out.txt"
         self.cont = ""
-        self.report = ""
-        self.summary = ""
         self.image_url = ""
         self.full_report = ""
+        self.report = ""
+        self.summary = ""
+        self.data = ""
     
     def generate_response(self, prompt):
         openai.api_key = self.__api_key
@@ -40,15 +41,16 @@ class GPT3:
         with open(self.example, "r") as f:
             example_out = f.read()
 
-        # # Running the model
-        # seq = pd.read_csv(Seq2Seq(self.image_path))
+        # Running the model
+        seq_model = Seq2Seq(self.image_path)
+        seq_model.predict_detectron()
+        seq = seq_model.predict_trocr()
         # check = pd.read_csv(Checkboxes(self.image_path))
-
-        seq, check = ""
+        check = pd.read_csv("data/check.csv")
 
         # ETL
-        data = etl_main(seq, check)
-        input = etl_input_checkbox()
+        input = etl_main(seq, check)
+        # self.data = etl_original_data_format(seq, check)
 
         # Report and summary
         self.cont = "Pretend you are an accident report analsyst in charge of performing a review on accident reports. Your objective is to make a full professional report, structured in accident summary, bullet points of each driver, being direct and conlusion and a 300 words detail summary, by no circumstance make up any information. The data you will be provided is in spanish, the variables describe both of the persons involded in the accident as well as information about it. You will deliver a full report in english  as well as a summary. "
@@ -57,12 +59,10 @@ class GPT3:
         self.full_report = self.generate_response(prompt)
 
         # Get the report and the summary
-        report = self.full_report.split('Summary')[0]
-        summary = self.full_report.split('Summary')[1]
-
-        self.report = report
-        self.summary = summary
-
+        # self.full_report = full_report
+        self.report = self.full_report.split('Summary')[0]
+        self.summary = self.full_report.split('Summary')[1]
+    
     def generate_image(self):
         # Image generation
         self.cont_img = "Pretend your are an designer to create an image representation of an accident you just saw 100 meters away. Your objective is to make a simple but detailed description of the image being direct and clear. Your return will be given to DAll-E to generate an image. By no circumstance make up any information."

@@ -47,14 +47,13 @@ class GPT3:
         seq_model.predict_detectron()
         seq = seq_model.predict_trocr()
 
-        # check = pd.read_csv(Checkboxes(self.image_path))
-        check = pd.read_csv("data/checkboxes.csv")
+        Checkboxes(self.image_path)
+        check = pd.read_csv("data/checkbox_detected.csv")
 
         # ETL
         self.data = etl_original_data_format(seq, check)
         input = etl_main(seq, check)
         print(input)
-        
 
         # Report and summary
         self.cont = "Pretend you are an accident report analsyst in charge of performing a review on accident reports. Your objective is to make a full professional report, structured in accident summary, bullet points of each driver, being direct and conlusion and a 300 words detail summary, by no circumstance make up any information. The data you will be provided is in spanish, the variables describe both of the persons involded in the accident as well as information about it. You will deliver a full report in english  as well as a summary. "

@@ -127,12 +127,10 @@ def checkbox_detection(image_array):
     #cv2.destroyAllWindows()
     cv2.imwrite('images/checkbox_detected.jpg', image_array)
 
-    with open("checkbox_detected.csv", 'w', newline='') as file:
+    with open("data/checkbox_detected.csv", 'w', newline='') as file:
         writer = csv.writer(file)
         # Write the header row (optional)
         writer.writerow(['campo', 'x', 'y', 'w', 'h', "text"])
         # Write each row of data to the file
         for row in data:
             writer.writerow(row)
-
-        return file

@@ -128,6 +128,7 @@ def etl_main(hand_written, checkbox):
     hand_written = hand_written.rename(columns={'texto': 'text'})
     hand_written = etl_format_input(hand_written)
 
+
     checkbox = etl_format_input(checkbox)
     input_file = etl_merge(hand_written, checkbox)
 

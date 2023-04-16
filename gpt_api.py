@@ -10,9 +10,9 @@ load_dotenv()
 
 class GPT3:
     # Initialize the class with various variables
-    def __init__(self, image, key=os.environ.get("OPENAI_API_KEY")):
+    def __init__(self, key=os.environ.get("OPENAI_API_KEY")):
         self.__api_key = key
-        self.image_path = image
+        self.image_path = "images/input_image.jpg"
         self.example = "data/example_out.txt"
         self.cont = ""
         self.image_url = ""

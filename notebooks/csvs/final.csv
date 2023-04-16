@@ -1,0 +1,68 @@
+,classes,texto
+0,A  aseguradora agencia,Alcaucin
+1,A  aseguradora agencia direccion,C/ Moreno 42
+2,A  aseguradora agencia nombre,Juan Luis
+3,A  aseguradora carta_verde,70444
+4,A  aseguradora carta_verde_desde,5/38
+5,A  aseguradora carta_verde_hasta,3/22
+6,A  aseguradora num_poliza,7522
+7,A  aseguradora pais,Espana
+8,A  aseguradora telefono,Arias.Juan Manuel@Outlook.Com
+9,A  aseguradora_nombre,Mutua
+10,A  conductor apellidos,Lopez
+11,A  conductor categoria,Am
+12,A  conductor danos_apreciados,Lampara Rayado
+13,A  conductor direccion,Calle Prieto 4
+14,A  conductor fecha_nac,30/2/1971
+15,A  conductor nombre,Consuelo
+16,A  conductor pais,Espana
+17,A  conductor permiso,79883521J
+18,A  conductor telefono,6601818659
+19,A  conductor valido_hasta,11/11/2039
+20,A  remolque matricula,6742Bkk
+21,A  remolque pais,Dinamarca
+22,A  vehiculo marca_modelo,Ajp Guao
+23,A  vehiculo matricula,284Mfa
+24,A  vehiculo pais,Espana
+25,A asegurado apellidos,Menendez
+26,A asegurado codigo_postal,18415
+27,A asegurado direccion,C/ Lopez 69
+28,A asegurado nombre,Maria Isabel
+29,A asegurado pais,Inglaterra
+30,A asegurado telefono,6795536675
+31,B asegurado apellidos,Ortega
+32,B asegurado codigo_postal,97790
+33,B asegurado direccion,C/ Dominguez 59
+34,B asegurado nombre,Ignacio
+35,B asegurado pais,Espana
+36,B asegurado telefono,Gil.Rosa Maria@Gmail.Es
+37,B aseguradora agencia,Sacanet
+38,B aseguradora agencia direccion,C/ Miguel 16
+39,B aseguradora agencia nombre,Gloria
+40,B aseguradora agencia pais,Espana
+41,B aseguradora carta_verde,1172
+42,B aseguradora carta_verde_desde,6/33n
+43,B aseguradora carta_verde_hasta,11/31
+44,B aseguradora n_poliza,7032
+45,B aseguradora telefono,Palacios.Jose Carlos@Gmail.Com
+46,B aseguradora_nombre,Sis
+47,B conductor apellidos,Leon
+48,B conductor categoria,Am
+49,B conductor direccion,Calle Sierra 42
+50,B conductor fecha_nac,27/2/1962
+51,B conductor nombre,Javier
+52,B conductor pais,Espana
+53,B conductor permiso,777355P
+54,B conductor telefono,6515413581
+55,B conductor valido_hasta,5/10/2012
+56,B danos_apreciados,Portaequipajes Rayado
+57,B remolque matricula,7181Bku
+58,B remolque pais,Espana
+59,B vehiculo marca_modelo,Brough Superior Viper
+60,B vehiculo matricula,9357Dtj
+61,B vehiculo pais,Espana
+62,fecha,11/6/1999
+63,hora,19:56
+64,localizacion pais,Espana
+65,lugar,Vilanova D'Alcolea
+66,testigos,"Pilar Sanchez, 6397393146"

@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Creates the Streamlit app header with information about the product and sets up the user interface
 def header():
     st.markdown('<h1>Insurance Automation</h1>', unsafe_allow_html=True)
     st.write("This is a demo of a chatbot using the GPT-3 model that can answer questions and provide insights about given crash report documents.")
@@ -20,6 +21,7 @@ def header():
 
     return uploaded_file
     
+# Creates the Streamlit app template
 def page_setup():
     tab1, tab2, tab3, tab4, tab5 = st.tabs(["Intro", "Report Summary", "Report Generated Image", "Crash Site", "Data Extraction"])
 
@@ -55,43 +57,57 @@ def page_setup():
 
     with tab4:
         st.markdown("## Crash Site")
-        st.write("This is an approximate location of the crash site")
 
     with tab5:
-        st.markdown("## Data Extraction")
-        st.markdown("#### Segmentation")
-        st.markdown("#### Check Boxes")
-        st.markdown("#### Handwritten Text")
-        st.markdown("#### Data Aggregation")
+        st.markdown("## Data Extraction")        
 
     return [tab2, tab3, tab4, tab5]
 
+# Runs the app with the given file and begins the data extraction and GPT-3 model
 def run(file, tab2, tab3, tab4, tab5):
+    # Checks if file has been uploaded
     if file:
+        # Runs the model and displays the results in the various tabs
         with st.spinner("Running the model..."):
-            model_gpt = GPT3("./data_trials/data2.csv")
+            save_uploadedfile(file)
+            model_gpt = GPT3()
+            # Begins the entire pipeline
             model_gpt.generate_report()
 
+        # Tab 2: Report Summary
         with tab2:
-            if not model_gpt.report == "" or not model_gpt.summary == "":
+            if not model_gpt.full_report == "":
                 st.write(model_gpt.full_report)
 
+        # Tab 3: Report Generated Image
         with tab3:
             model_gpt.generate_image()
+            st.write("This might be what the crash site could've looked like")
             st.markdown(f"<img src='{model_gpt.image_url}' alt='No Image Found' style='justify-content: center'/>", unsafe_allow_html=True)
 
+        # Tab 4: Crash Site using Google Maps API
         with tab4:
-            location = get_location(model_gpt.data_path)
-
-            if type(location) == str:
-                st.write("No location found for '" + location.upper() + "'")
-
-            else:
+            st.write("This is an approximate location of the crash site")
+            location = get_location(model_gpt.data)
+            
+            if type(location) != str:
                 st.map(location)
 
+        # Tab 5: Displaying extracted data
         with tab5:
-            pass
+            st.markdown("#### Segmentation & Handwriting Recognition")
+            st.image("images/result.jpg")
+            st.markdown("#### Check Boxes")
+            st.image("images/checkbox_detected.jpg")
+            st.markdown("#### Data Output")
+            st.write(model_gpt.data)
 
+# Helper function to save the uploaded file
+def save_uploadedfile(uploadedfile):
+    with open(os.path.join("images", "input_image.jpg"), "wb") as f:
+        f.write(uploadedfile.getbuffer())
+
+# Helper function to search longitude and latitude of a location
 def search_lat_lng(data):
     lat_lng_list = []
     for location in data:
@@ -99,30 +115,28 @@ def search_lat_lng(data):
         lat_lng_list.append((lat_lng['lat'], lat_lng['lng']))
     return lat_lng_list
 
+# Helper function to get the location of the crash site using Google Maps API
 def get_location(data, gmaps_key=os.environ.get("GOOGLE_MAPS_API_KEY")):
-    if data:
+    try:
         df = data
         df_lugar = df[df['campo'] == 'lugar']
-        df_localizacion = df[df['campo'] == 'localizacion pais']
-        df = pd.concat([df_lugar, df_localizacion])
-        address = df["text"].values[0] + ", " + df["text"].values[1]
+        address = df_lugar["text"].values[0]
 
         gmaps = googlemaps.Client(key=gmaps_key)
 
         location = gmaps.geocode(address)
         loc_data = search_lat_lng(location)
         
-        loc_data1 = pd.DataFrame({"latitude": [loc_data[0][0]], "longitude":[loc_data[0][1]]})
-        loc_data2 = pd.DataFrame({"latitude": [loc_data[1][0]], "longitude":[loc_data[1][1]]})
+        loc_data = pd.DataFrame({"latitude": [loc_data[0][0]], "longitude":[loc_data[0][1]]})
         
         try:
-            return loc_data2
+            return loc_data
         except:
-            return loc_data1
-    else:
-        return None
+            return None
+    except:
+        return pd.DataFrame({"latitude": 40.4637, "longitude": 3.7492})
 
-
+# Runs entire Streamlit app
 if __name__ == "__main__":
     file = header()
     tabs = page_setup()

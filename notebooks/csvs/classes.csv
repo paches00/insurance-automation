@@ -1,0 +1,114 @@
+,classes,encoding
+0,A  aseguradora agencia,0
+1,A  aseguradora agencia direccion,1
+2,A  aseguradora agencia nombre,2
+3,A  aseguradora carta_verde,3
+4,A  aseguradora carta_verde_desde,4
+5,A  aseguradora carta_verde_hasta,5
+6,A  aseguradora danos_propios_no,6
+7,A  aseguradora danos_propios_si,7
+8,A  aseguradora num_poliza,8
+9,A  aseguradora pais,9
+10,A  aseguradora telefono,10
+11,A  aseguradora_nombre,11
+12,A  conductor apellidos,12
+13,A  conductor categoria,13
+14,A  conductor danos_apreciados,14
+15,A  conductor direccion,15
+16,A  conductor fecha_nac,16
+17,A  conductor nombre,17
+18,A  conductor pais,18
+19,A  conductor permiso,19
+20,A  conductor telefono,20
+21,A  conductor valido_hasta,21
+22,A  remolque matricula,22
+23,A  remolque pais,23
+24,A  vehiculo marca_modelo,24
+25,A  vehiculo matricula,25
+26,A  vehiculo pais,26
+27,A 1,27
+28,A 10,28
+29,A 11,29
+30,A 12,30
+31,A 13,31
+32,A 14,32
+33,A 15,33
+34,A 16,34
+35,A 17,35
+36,A 2,36
+37,A 3,37
+38,A 4,38
+39,A 5,39
+40,A 6,40
+41,A 7,41
+42,A 8,42
+43,A 9,43
+44,A asegurado apellidos,44
+45,A asegurado codigo_postal,45
+46,A asegurado direccion,46
+47,A asegurado nombre,47
+48,A asegurado pais,48
+49,A asegurado telefono,49
+50,A n_casillas,50
+51,B 1,51
+52,B 10,52
+53,B 11,53
+54,B 12,54
+55,B 13,55
+56,B 14,56
+57,B 15,57
+58,B 16,58
+59,B 17,59
+60,B 2,60
+61,B 3,61
+62,B 4,62
+63,B 5,63
+64,B 6,64
+65,B 7,65
+66,B 8,66
+67,B 9,67
+68,B asegurado apellidos,68
+69,B asegurado codigo_postal,69
+70,B asegurado direccion,70
+71,B asegurado nombre,71
+72,B asegurado pais,72
+73,B asegurado telefono,73
+74,B aseguradora agencia,74
+75,B aseguradora agencia direccion,75
+76,B aseguradora agencia nombre,76
+77,B aseguradora agencia pais,77
+78,B aseguradora carta_verde,78
+79,B aseguradora carta_verde_desde,79
+80,B aseguradora carta_verde_hasta,80
+81,B aseguradora danos_propios no,81
+82,B aseguradora danos_propios si,82
+83,B aseguradora n_poliza,83
+84,B aseguradora telefono,84
+85,B aseguradora_nombre,85
+86,B conductor apellidos,86
+87,B conductor categoria,87
+88,B conductor direccion,88
+89,B conductor fecha_nac,89
+90,B conductor nombre,90
+91,B conductor pais,91
+92,B conductor permiso,92
+93,B conductor telefono,93
+94,B conductor valido_hasta,94
+95,B danos_apreciados,95
+96,B n_casillas,96
+97,B remolque matricula,97
+98,B remolque pais,98
+99,B vehiculo marca_modelo,99
+100,B vehiculo matricula,100
+101,B vehiculo pais,101
+102,danos_materiales objetos no,102
+103,danos_materiales objetos si,103
+104,danos_materiales vehiculos si,104
+105,danos_materiales vehículos no,105
+106,fecha,106
+107,hora,107
+108,localizacion pais,108
+109,lugar,109
+110,testigos,110
+111,victimas no,111
+112,victimas si,112

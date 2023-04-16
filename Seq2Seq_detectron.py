@@ -26,7 +26,7 @@ class Seq2Seq_Detectron:
         self.input = input
         self.processor = TrOCRProcessor.from_pretrained("microsoft/trocr-small-handwritten")
         self.model = VisionEncoderDecoderModel.from_pretrained("./weights/tuned-seq2seqv1")
-    
+
     def load_list_from_file(file_name):
         my_list = []
         with open(file_name, 'r') as file:
@@ -42,21 +42,21 @@ class Seq2Seq_Detectron:
         train = [item for item in lst if item not in test]
         if split == 'train':
             return train
-        
+
         if split == 'test':
             return test
-    
+
     # Function to register dataset in coco format for Detectron Model
     def register_dataset(name, dirname):
         df = Seq2Seq_Detectron.load_list_from_file('data/bounding-box.txt')
         new_classese = pd.read_csv('data/new_classes.csv')
         if name not in DatasetCatalog.list():
             DatasetCatalog.register(name, lambda: Seq2Seq_Detectron.split_data(df, 'train'))
-            
+
         MetadataCatalog.get(name).set(
             thing_classes=list(new_classese['classes']), split='train', dirname= dirname
         )
-    
+
     # Function to set-up configs of detectron
     def setup_detectron(args):
         cfg = get_cfg()
@@ -72,7 +72,7 @@ class Seq2Seq_Detectron:
         df = Seq2Seq_Detectron.load_list_from_file('data/bounding-box.txt')
         new_classese = pd.read_csv('data/new_classes.csv')
         parser = default_argument_parser()
-        args = parser.parse_args("--config-file weights/tuned-detectronv1/config.yaml MODEL.WEIGHTS weights/tuned-detectronv1/model_final.pth".split())
+        args = parser.parse_args("--config-file weights/tuned-detectronv2/config.yaml MODEL.WEIGHTS weights/tuned-detectronv2/model_final.pth".split())
         cfg = Seq2Seq_Detectron.setup_detectron(args)
         predictor = DefaultPredictor(cfg)
 
@@ -90,7 +90,7 @@ class Seq2Seq_Detectron:
 
         # Set sample size as wanted
         sample_size = 1
-        
+
         im = cv2.imread(self.input)
         MetadataCatalog.get("new_docs_dataset_train").thing_classes = list(new_classese['classes'])
         start_time = time.time()
@@ -118,12 +118,12 @@ class Seq2Seq_Detectron:
         # calling the processor is equivalent to calling the feature extractor
         pixel_values = self.processor(image, return_tensors="pt").pixel_values
         return image, pixel_values
-    
+
     # Adds with specific key, the texto to its class
     def add_value_to_specific(df, column_to_check, value_to_check, column_to_add, value_to_add):
         df.loc[df[column_to_check] == value_to_check, column_to_add] = value_to_add
         return df
-    
+
     # Predict with trOCR the written text in the images
     def predict_trocr(self):
         boxes = pd.DataFrame()
@@ -139,7 +139,7 @@ class Seq2Seq_Detectron:
             print('Campo: ', file.split('.jpg')[0])
             print(generated_text)
         return boxes
-    
+
     def run_model(self):
         self.predict_detectron()
         boxes = self.predict_trocr()

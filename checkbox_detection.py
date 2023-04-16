@@ -128,10 +128,14 @@ def checkbox_detection(image_array):
         for row in data:
             writer.writerow(row)
 
+        return file
+
     # Show the resulting image
     #cv2.imshow("Checkbox Detection", image_array)
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()
+
+    
 
     
 

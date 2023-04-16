@@ -4,6 +4,7 @@ from etl_input import etl_main, etl_original_data_format
 import pandas as pd
 from dotenv import load_dotenv
 from Seq2Seq_detectron import Seq2Seq_Detectron as Seq2Seq
+from checkbox_detection import checkbox_detection as Checkboxes
 
 load_dotenv()
 
@@ -46,8 +47,7 @@ class GPT3:
         seq_model.predict_detectron()
         seq = seq_model.predict_trocr()
 
-        # check = pd.read_csv(Checkboxes(self.image_path))
-        check = pd.read_csv("data/check.csv")
+        check = pd.read_csv(Checkboxes(self.image_path))
 
         # ETL
         self.data = etl_original_data_format(seq, check)

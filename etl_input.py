@@ -1,4 +1,4 @@
-def elt_format_input(data):
+def etl_format_input(data):
     # Transform the data to the correct format
     data["input"] = "input"
     # data = data.dropna()
@@ -113,22 +113,22 @@ def etl_input_checkbox(data):
 
     return data
 
-def etl_orginal_data_format(hand_written, check):
+def etl_original_data_format(hand_written, check):
     hand_written = hand_written.rename(columns={'classes': 'campo'})
     hand_written = hand_written.rename(columns={'texto': 'text'})
     
     # append checkbox data
     final = hand_written.append(check)
-    final = final.drop(columns=['Unnamed: 0'])
+    # final = final.drop(columns=['Unnamed: 0'])
     return final
 
 def etl_main(hand_written, checkbox):
 
     hand_written = hand_written.rename(columns={'classes': 'campo'})
     hand_written = hand_written.rename(columns={'texto': 'text'})
-    hand_written = elt_format_input(hand_written)
+    hand_written = etl_format_input(hand_written)
 
-    checkbox = elt_format_input(checkbox)
+    checkbox = etl_format_input(checkbox)
     input_file = etl_merge(hand_written, checkbox)
 
     return input_file

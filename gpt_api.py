@@ -47,7 +47,8 @@ class GPT3:
         seq_model.predict_detectron()
         seq = seq_model.predict_trocr()
 
-        check = pd.read_csv(Checkboxes(self.image_path))
+        # check = pd.read_csv(Checkboxes(self.image_path))
+        check = pd.read_csv("data/checkboxes.csv")
 
         # ETL
         self.data = etl_original_data_format(seq, check)

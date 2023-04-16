@@ -1,6 +1,6 @@
 import openai
 import os 
-from etl_input import ETLInput
+from etl_input import etl_format_input, etl_input_checkbox
 import pandas as pd
 from dotenv import load_dotenv
 
@@ -41,8 +41,8 @@ class GPT3:
         input_file = pd.read_csv(self.data_path)
 
         # ETL
-        data_pre = ETLInput.elt_format_input(input_file)
-        input = ETLInput.etl_input_checkbox(data_pre)
+        data_pre = etl_format_input(input_file)
+        input = etl_input_checkbox(data_pre)
 
         # Report and summary
         self.cont = "Pretend you are an accident report analsyst in charge of performing a review on accident reports. Your objective is to make a full professional report, structured in accident summary, bullet points of each driver, being direct and conlusion and a 300 words detail summary, by no circumstance make up any information. The data you will be provided is in spanish, the variables describe both of the persons involded in the accident as well as information about it. You will deliver a full report in english  as well as a summary. "

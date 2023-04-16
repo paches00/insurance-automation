@@ -3,7 +3,6 @@ class ETLInput:
     def __init__(self, data):
         self.data = data
 
-
     def elt_format_input(data):
         # Transform the data to the correct format
         data["input"] = "input"
@@ -14,7 +13,6 @@ class ETLInput:
         return data
 
     def etl_input_checkbox(data):
-        
         # Si la columna 'victimas si' tiene x o X en la celda, se cambia por 1
         data['A aseguradora danos_propios'] = data['A  aseguradora danos_propios_si'].apply(lambda x: True if x == 'x' or x == 'X' else False)
         data = data.drop(columns=['A  aseguradora danos_propios_si', 'A  aseguradora danos_propios_no'])
@@ -53,5 +51,4 @@ class ETLInput:
             data = data.drop(columns=[f'A {i+1}', f'B {i+1}'])
 
         # Give me a json format of the data
-    
         return data.to_json(orient='records')

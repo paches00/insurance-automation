@@ -1,13 +1,15 @@
-# API open AI
 import openai
 import os 
 from etl_input import ETLInput
 import pandas as pd
-import random
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class GPT3:
+
     def __init__(self, data, key=os.environ.get("OPENAI_API_KEY")):
-        self.api_key = key
+        self.__api_key = key
         self.data_path = data
         self.example = "example_out.txt"
         self.cont = ""
@@ -17,7 +19,7 @@ class GPT3:
         self.full_report = ""
     
     def generate_response(self, prompt):
-        openai.api_key = self.api_key
+        openai.api_key = self.__api_key
         completion=openai.ChatCompletion.create(
             model='gpt-3.5-turbo',
             messages=[
@@ -44,7 +46,7 @@ class GPT3:
 
         # Report and summary
         self.cont = "Pretend you are an accident report analsyst in charge of performing a review on accident reports. Your objective is to make a full professional report, structured in accident summary, bullet points of each driver, being direct and conlusion and a 300 words detail summary, by no circumstance make up any information. The data you will be provided is in spanish, the variables describe both of the persons involded in the accident as well as information about it. You will deliver a full report in english  as well as a summary. "
-        prompt = "You are given 66 features involving the accident, remember the data is given in spanish. Here is the provided data is in json format: " + str(input) + ". Please return the output like the output of the initial example " + str(example_out) + " , stay in the same format as much as possible.Do not make up any information, use the data provided."
+        prompt = "You are given 66 features involving the accident, remember the data is given in spanish. Here is the provided data is in json format: " + str(input) + ". Please return the output like the output of the initial example " + str(example_out) + " , stay in the same format as much as possible. Do not make up any information, use the data provided."
 
         self.full_report = self.generate_response(prompt)
 
@@ -60,9 +62,9 @@ class GPT3:
         self.cont_img = "Pretend your are an designer to create an image representation of an accident you just saw 100 meters away. Your objective is to make a simple but detailed description of the image being direct and clear. Your return will be given to DAll-E to generate an image. By no circumstance make up any information."
         prompt_img = f'You are given 300 word summary of the accident. Here is the provided data, {self.summary}. Please return a simple description in 20 words mentioning the situation without any personal information. By no circumstance make up any information.'
         
-        openai.api_key = self.api_key
-
         image_prompt = self.generate_response(prompt_img)
+
+        openai.api_key = self.__api_key
         response = openai.Image.create(
             prompt=image_prompt,
             n=1,

@@ -69,20 +69,19 @@ def page_setup():
 def run(file, tab2, tab3, tab4, tab5):
     if file:
         with st.spinner("Running the model..."):
-            model = GPT3("./data_trials/data2.csv")
-            model.generate_report()
+            model_gpt = GPT3("./data_trials/data2.csv")
+            model_gpt.generate_report()
 
         with tab2:
-            if not model.report == "" or not model.summary == "":
-                st.write(model.full_report)
+            if not model_gpt.report == "" or not model_gpt.summary == "":
+                st.write(model_gpt.full_report)
 
         with tab3:
-            model.generate_image()
-            start_image = False
-            st.markdown(f"<img src='{model.image_url}' alt='No Image Found' style='justify-content: center'/>", unsafe_allow_html=True)
+            model_gpt.generate_image()
+            st.markdown(f"<img src='{model_gpt.image_url}' alt='No Image Found' style='justify-content: center'/>", unsafe_allow_html=True)
 
         with tab4:
-            location = get_location(model.data_path)
+            location = get_location(model_gpt.data_path)
 
             if type(location) == str:
                 st.write("No location found for '" + location.upper() + "'")
@@ -112,9 +111,13 @@ def get_location(data, gmaps_key=os.environ.get("GOOGLE_MAPS_API_KEY")):
     location = gmaps.geocode(address)
     loc_data = search_lat_lng(location)
     
-    loc_data = pd.DataFrame({"latitude": [loc_data[1][0]], "longitude":[loc_data[1][1]]})
-
-    return loc_data
+    loc_data1 = pd.DataFrame({"latitude": [loc_data[0][0]], "longitude":[loc_data[0][1]]})
+    loc_data2 = pd.DataFrame({"latitude": [loc_data[1][0]], "longitude":[loc_data[1][1]]})
+    
+    try:
+        return loc_data2
+    except:
+        return loc_data1
 
 if __name__ == "__main__":
     file = header()

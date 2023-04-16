@@ -6,9 +6,11 @@ import numpy as np
 # Read image into array
 #image_array = cv2.imread("c.jpg")
 
-def checkbox_detection(image_array, image_name):
+def checkbox_detection(image_array):
+    image = cv2.imread(image_array)
+   
     # Convert image to grayscale
-    gray_scale_image = cv2.cvtColor(image_array, cv2.COLOR_BGR2GRAY)
+    gray_scale_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Image thresholding
     _, img_bin = cv2.threshold(gray_scale_image, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
@@ -39,10 +41,10 @@ def checkbox_detection(image_array, image_name):
     _, labels, stats, _ = cv2.connectedComponentsWithStats(~img_bin_final, connectivity=8, ltype=cv2.CV_32S)
     dilation_kernel = np.ones((2, 2), np.uint8)
 
-    names = ["Victima(s) incluso leve(s) — no",
-             "Victima(s) incluso leve(s) — si",
+    names = ["Victima(s) incluso leve(s) — No",
+             "Victima(s) incluso leve(s) — Si",
              "Daños materiales: Vehículos distintos de A y B — No",
-             "Daños materiales: Vehículos distintos de A y B — si",
+             "Daños materiales: Vehículos distintos de A y B — Si",
              "Daños materiales:objetos distintos al vehículo — No",
              "Daños materiales: objetos distintos al vehículo — Si",
              "A Estaba estacionado/parado",
@@ -77,7 +79,7 @@ def checkbox_detection(image_array, image_name):
              "B Invadía la parte reservada a la circulación en sentido inverso",
              "Vehiculo A — ¿Los daños propios del vehículo están asegurados? — No",
              "Vehiculo A — ¿Los daños propios del vehículo están asegurados? — Si",
-             "Vehiculo B— ¿Los daños propios del vehículo están asegurados? — No",
+             "Vehiculo B — ¿Los daños propios del vehículo están asegurados? — No",
              "Vehiculo B — ¿Los daños propios del vehículo están asegurados? — Si",
              "A Venía de la derecha (en un cruce)",
              "B Venía de la derecha (en un cruce)",
@@ -118,7 +120,7 @@ def checkbox_detection(image_array, image_name):
 
             counter+=1
 
-    with open(image_name + ".csv", 'w', newline='') as file:
+    with open("checkbox_detected.csv", 'w', newline='') as file:
         writer = csv.writer(file)
         # Write the header row (optional)
         writer.writerow(['campo', 'x', 'y', 'w', 'h', "text"])
@@ -131,18 +133,7 @@ def checkbox_detection(image_array, image_name):
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()
 
-
-
-for image in os.listdir("/Users/bartekrzycki/Desktop/data"):
-    # Get the filename without the path
-    filename = os.path.basename(image)
-    image_name, extension = os.path.splitext(filename)
-
-    file_path = os.path.join("/Users/bartekrzycki/Desktop/data", image)
-    if os.path.isfile(file_path):
-        image = cv2.imread(file_path)
-        checkbox_detection(image, image_name)
-
+    
 
 
 

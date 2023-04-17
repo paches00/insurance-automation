@@ -1,0 +1,112 @@
+,campo,text,x,y,w,h
+0,A  aseguradora agencia,Deposito destrua destruego,,,,
+1,A  aseguradora agencia direccion,C/ aquelera 100,,,,
+2,A  aseguradora agencia nombre,Irene,,,,
+3,A  aseguradora carta_verde,75144,,,,
+4,A  aseguradora carta_verde_desde,1/1/71,,,,
+5,A  aseguradora carta_verde_hasta,5/12,,,,
+6,A  aseguradora num_poliza,2271,,,,
+7,A  aseguradora pais,Espana,,,,
+8,A  aseguradora telefono,6113336419,,,,
+9,A  aseguradora_nombre,Balumba,,,,
+10,A  conductor apellidos,Contreras,,,,
+11,A  conductor categoria,B,,,,
+12,A  conductor danos_apreciados,Buentesa quemado,,,,
+13,A  conductor direccion,C/ conde delo,,,,
+14,A  conductor fecha_nac,27/8/1961,,,,
+15,A  conductor nombre,Ustoria,,,,
+16,A  conductor pais,Italia,,,,
+17,A  conductor permiso,467399y,,,,
+18,A  conductor telefono,Conde.bidia@outlook.es,,,,
+19,A  conductor valido_hasta,2/6/209,,,,
+20,A  remolque matricula,6395xac,,,,
+21,A  remolque pais,Espana,,,,
+22,A  vehiculo marca_modelo,MANO DE LA LA,,,,
+23,A  vehiculo matricula,8884ryo,,,,
+24,A  vehiculo pais,Espana,,,,
+25,A asegurado apellidos,Zamora,,,,
+26,A asegurado codigo_postal,4028,,,,
+27,A asegurado direccion,C/ bermudez 97,,,,
+28,A asegurado nombre,Maria delves,,,,
+29,A asegurado pais,Francis,,,,
+30,A asegurado telefono,Palacios maria@hotmail.es,,,,
+31,B asegurado apellidos,Castillo,,,,
+32,B asegurado codigo_postal,94112,,,,
+33,B asegurado direccion,Calle ramirez 99,,,,
+34,B asegurado nombre,direc,,,,
+35,B asegurado pais,Espana,,,,
+36,B asegurado telefono,659063482,,,,
+37,B aseguradora agencia,Iberania,,,,
+38,B aseguradora agencia direccion,Calle de la keenos 84,,,,
+39,B aseguradora agencia nombre,Maria,,,,
+40,B aseguradora agencia pais,Espana,,,,
+41,B aseguradora carta_verde,19043,,,,
+42,B aseguradora carta_verde_desde,319h,,,,
+43,B aseguradora carta_verde_hasta,7/22,,,,
+44,B aseguradora n_poliza,5406,,,,
+45,B aseguradora telefono,Proposal.sustin@hotmail.com,,,,
+46,B aseguradora_nombre,Cases,,,,
+47,B conductor apellidos,Aguilar,,,,
+48,B conductor categoria,B,,,,
+49,B conductor direccion,C/ guerra 85,,,,
+50,B conductor fecha_nac,1519/1997,,,,
+51,B conductor nombre,Casanen,,,,
+52,B conductor pais,Espana,,,,
+53,B conductor permiso,20437005c,,,,
+54,B conductor telefono,Belvan.sus@gmail.es,,,,
+55,B conductor valido_hasta,2/2/2027,,,,
+56,B danos_apreciados,Deposito de combustible golpeado,,,,
+57,B remolque matricula,IKERA,,,,
+58,B remolque pais,Espana,,,,
+59,B vehiculo marca_modelo,INESIASO,,,,
+60,B vehiculo matricula,8933pmin,,,,
+61,B vehiculo pais,China,,,,
+62,fecha,12/7/2012,,,,
+63,hora,17:38,,,,
+64,localizacion pais,Espana,,,,
+65,lugar,,,,,
+66,testigos,Ucrania.domingo@gmail.com,,,,
+0,Victima(s) incluso leve(s) — No,X,755.0,111.0,10.0,10.0
+1,Victima(s) incluso leve(s) — Si,,853.0,111.0,10.0,10.0
+2,Daños materiales: Vehículos distintos de A y B — No,X,93.0,188.0,11.0,10.0
+3,Daños materiales: Vehículos distintos de A y B — Si,X,191.0,188.0,10.0,10.0
+4,Daños materiales:objetos distintos al vehículo — No,X,282.0,188.0,10.0,11.0
+5,Daños materiales: objetos distintos al vehículo — Si,X,380.0,188.0,10.0,11.0
+6,A Estaba estacionado/parado,X,449.0,327.0,17.0,16.0
+7,B Estaba estacionado/parado,X,733.0,327.0,16.0,16.0
+8,A Salía de un estacionamiento abriendo puerta,X,449.0,349.0,17.0,17.0
+9,B Salía de un estacionamiento abriendo puerta,X,733.0,349.0,16.0,17.0
+10,A Iba a estacionar,X,449.0,392.0,17.0,16.0
+11,B Iba a estacionar,X,733.0,392.0,16.0,16.0
+12,"A Salia de un aparcamiento, de un Vehículo lugar privado, de un camino de tierra",X,449.0,424.0,17.0,17.0
+13,"B Salia de un aparcamiento, de un Vehículo lugar privado, de un camino de tierra",X,733.0,424.0,16.0,17.0
+14,"A Entrada a un aparcamiento, a un lugar privado, a un camino de tierra",X,449.0,472.0,17.0,16.0
+15,"B Entrada a un aparcamiento, a un lugar privado, a un camino de tierra",,733.0,472.0,16.0,16.0
+16,A Entrada a una plaza de sentido giratorio,,449.0,518.0,17.0,16.0
+17,B Entrada a una plaza de sentido giratorio,,733.0,518.0,16.0,16.0
+18,A Circulaba por una plaza de sentido giratono,X,449.0,567.0,17.0,16.0
+19,B Circulaba por una plaza de sentido giratono,X,733.0,566.0,16.0,17.0
+20,A Colisiono en la parte de atrás al otro vehiculo que circulaba en el mismo sentido y en el mismo carril,,449.0,616.0,17.0,16.0
+21,B Colisiono en la parte de atrás al otro vehiculo que circulaba en el mismo sentido y en el mismo carril,,733.0,616.0,16.0,16.0
+22,A Circulaba en el mismo sentido y en carril diferente,X,449.0,679.0,17.0,17.0
+23,B Circulaba en el mismo sentido y en carril diferente,,733.0,679.0,16.0,17.0
+24,A Cambiaba de carril,X,449.0,728.0,17.0,16.0
+25,B Cambiaba de carril,,733.0,728.0,16.0,16.0
+26,A Adelantaba,X,449.0,759.0,17.0,16.0
+27,B Adelantaba,,733.0,759.0,16.0,16.0
+28,A Giraba a la derecha,,449.0,791.0,17.0,16.0
+29,B Giraba a la derecha,X,733.0,790.0,16.0,17.0
+30,A Giraba a la izquierda,X,449.0,823.0,17.0,16.0
+31,B Giraba a la izquierda,,733.0,823.0,16.0,16.0
+32,A Daba marcha atrás,X,449.0,853.0,17.0,17.0
+33,B Daba marcha atrás,X,733.0,853.0,16.0,17.0
+34,A Invadía la parte reservada a la circulación en sentido inverso,,449.0,886.0,17.0,16.0
+35,B Invadía la parte reservada a la circulación en sentido inverso,X,733.0,886.0,16.0,17.0
+36,Vehiculo A — ¿Los daños propios del vehículo están asegurados? — No,X,160.0,897.0,10.0,10.0
+37,Vehiculo A — ¿Los daños propios del vehículo están asegurados? — Si,X,257.0,897.0,11.0,10.0
+38,Vehiculo B — ¿Los daños propios del vehículo están asegurados? — No,X,880.0,897.0,11.0,11.0
+39,Vehiculo B — ¿Los daños propios del vehículo están asegurados? — Si,,978.0,897.0,10.0,10.0
+40,A Venía de la derecha (en un cruce),,449.0,935.0,17.0,16.0
+41,B Venía de la derecha (en un cruce),X,733.0,935.0,16.0,16.0
+42,A No respeto la señal de preferencia o sematoro en rojo,,449.0,982.0,17.0,16.0
+43,B No respeto la señal de preferencia o sematoro en rojo,X,733.0,982.0,16.0,16.0

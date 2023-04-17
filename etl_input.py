@@ -117,6 +117,7 @@ def etl_original_data_format(hand_written, check):
     # append checkbox data
     final = hand_written.append(check)
     # final = final.drop(columns=['Unnamed: 0'])
+    final.to_csv('data/final.csv')
     return final
 
 def etl_main(hand_written, checkbox):

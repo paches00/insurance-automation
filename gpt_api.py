@@ -11,7 +11,7 @@ load_dotenv()
 class GPT3:
     # Initialize the class with various variables
     def __init__(self, key=os.environ.get("OPENAI_API_KEY")):
-        self.__api_key = key
+        self.api_key = key
         self.image_path = "images/input_image.jpg"
         self.example = "data/example_out.txt"
         self.cont = ""
@@ -23,7 +23,7 @@ class GPT3:
     
     # Takes a prompt and generates a response by calling the OpenAI API
     def generate_response(self, prompt):
-        openai.api_key = self.__api_key
+        openai.api_key = self.api_key
         completion=openai.ChatCompletion.create(
             model='gpt-3.5-turbo',
             messages=[
@@ -76,7 +76,7 @@ class GPT3:
         
         image_prompt = self.generate_response(prompt_img)
 
-        openai.api_key = self.__api_key
+        openai.api_key = self.api_key
         response = openai.Image.create(
             prompt=image_prompt,
             n=1,

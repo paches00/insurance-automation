@@ -4,6 +4,7 @@ import os
 from gpt_api import GPT3
 import googlemaps
 from dotenv import load_dotenv
+import numpy as np
 
 load_dotenv()
 
@@ -30,8 +31,8 @@ def page_setup():
         st.markdown("#### Step 1: Data Extraction")
         st.write("The first step is to extract the data from the crash report docment. This task is completed in four parts:")
         st.write("1. The document is segmented into sections using a pretrained model")
-        st.write("2. The check boxes are identified and the corresponding sections are extracted")
-        st.write("3. The writing on the document is converted to text using OCR")
+        st.write("2. The writing on the document is converted to text using OCR")
+        st.write("3. The check boxes are identified and the corresponding sections are extracted")
         st.write("4. Finally, The data from all three models is combined into readable data")
         st.markdown("#### Step 2: Prompt Engineering")
         st.write("The second step is to create a prompt for the GPT-3 model. This is done by combining the extracted data with a prompt template. The template is then given to the model which is capable of highlighting and presenting the output in a concise and standardized manner.")
@@ -87,11 +88,8 @@ def run(file, tab2, tab3, tab4, tab5):
 
         # Tab 4: Crash Site using Google Maps API
         with tab4:
-            st.write("This is an approximate location of the crash site")
             location = get_location(model_gpt.data)
-            
-            if type(location) != str:
-                st.map(location)
+            st.map(location)
 
         # Tab 5: Displaying extracted data
         with tab5:
@@ -117,24 +115,21 @@ def search_lat_lng(data):
 
 # Helper function to get the location of the crash site using Google Maps API
 def get_location(data, gmaps_key=os.environ.get("GOOGLE_MAPS_API_KEY")):
+    df = data
+    df_lugar = df[df['campo'] == 'lugar']
+    address = df_lugar["text"].values[0]
+
+    gmaps = googlemaps.Client(key=gmaps_key)
+
+    location = gmaps.geocode(address)
+    loc_data = search_lat_lng(location)
+    
     try:
-        df = data
-        df_lugar = df[df['campo'] == 'lugar']
-        address = df_lugar["text"].values[0]
-
-        gmaps = googlemaps.Client(key=gmaps_key)
-
-        location = gmaps.geocode(address)
-        loc_data = search_lat_lng(location)
-        
-        loc_data = pd.DataFrame({"latitude": [loc_data[0][0]], "longitude":[loc_data[0][1]]})
-        
-        try:
-            return loc_data
-        except:
-            return None
+        st.write("This is an approximate location of the crash site")
+        return pd.DataFrame({"latitude": [loc_data[0][0]], "longitude":[loc_data[0][1]]})
     except:
-        return pd.DataFrame({"latitude": 40.4637, "longitude": 3.7492})
+        st.write("No location found. Default location is set to Madrid, Spain")
+        return pd.DataFrame({"latitude": [40.4637], "longitude": [-3.7492]})
 
 # Runs entire Streamlit app
 if __name__ == "__main__":
